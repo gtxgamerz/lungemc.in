@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunge MC — Minecraft Server</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030814;--bg2:#071326;--panel:rgba(7,18,37,.72);--line:rgba(87,198,255,.22);--text:#f3f8ff;--muted:#a9bfd6;--cyan:#1fd2ff;--blue:#297cff;--green:#22e38a;--purple:#8c68ff;--red:#ff4d55}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Chakra Petch',Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 50% -10%,#123c73 0,#071326 35%,#02050d 80%);line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 55%);z-index:0}
+.nav{position:fixed;top:0;left:0;right:0;height:78px;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(2,7,17,.74);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px)}
+.nav-inner{width:min(1180px,92vw);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-family:'Bungee',sans-serif;font-size:24px;letter-spacing:1px;white-space:nowrap;text-shadow:0 2px 0 #020815,0 0 20px rgba(31,210,255,.16)}.logo span{color:var(--cyan);text-shadow:0 0 18px rgba(31,210,255,.55)}
+.nav ul{display:flex;align-items:center;gap:27px;list-style:none;color:#c6d7e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;letter-spacing:.4px}.nav a{text-decoration:none;transition:.2s}.nav a:hover{color:#fff;text-shadow:0 0 14px rgba(31,210,255,.45)}
+.nav-social{display:flex;gap:9px;align-items:center}.nav-discord{padding:11px 17px;border:1px solid rgba(31,210,255,.45);border-radius:999px;color:#ecfaff!important;box-shadow:0 0 22px rgba(31,210,255,.08);background:rgba(5,20,39,.55)}
+.hero{min-height:100vh;padding:112px 5vw 70px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 24%,rgba(25,182,255,.28),transparent 28%),radial-gradient(circle at 15% 45%,rgba(33,101,255,.18),transparent 26%),radial-gradient(circle at 85% 44%,rgba(131,83,255,.14),transparent 24%),linear-gradient(180deg,#01040b 0,#04142c 54%,#020712 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0 52%,rgba(3,13,27,.08) 52% 100%),radial-gradient(circle at 50% 90%,rgba(22,177,255,.22),transparent 34%);}
+.stars{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.75) 0 1px,transparent 1.6px);background-size:110px 110px;opacity:.25;transform:translateY(-10px)}
+.cloud{position:absolute;height:26px;width:110px;background:rgba(116,177,225,.10);filter:blur(2px);border-radius:20px;opacity:.8}.c1{left:7%;top:22%;transform:scale(.8)}.c2{right:10%;top:29%;transform:scale(1.05)}.c3{left:23%;top:40%;transform:scale(.6)}
+.island{position:absolute;border-radius:50% 50% 22% 22%;filter:drop-shadow(0 20px 25px rgba(0,0,0,.42));background:linear-gradient(180deg,#1e9b56 0 18%,#6d4327 18% 72%,#271a18 72%);clip-path:polygon(4% 8%,96% 4%,88% 65%,77% 88%,66% 100%,31% 94%,18% 76%,8% 42%)}
+.i1{width:260px;height:170px;left:-34px;bottom:18%;transform:rotate(-7deg)}.i2{width:240px;height:160px;right:-30px;bottom:22%;transform:rotate(9deg);filter:drop-shadow(0 20px 25px rgba(0,0,0,.42))}
+.i3{width:190px;height:120px;left:9%;top:36%;transform:scale(.72);opacity:.8}.i4{width:190px;height:120px;right:10%;top:40%;transform:scale(.64);opacity:.75}
+.waterfall{position:absolute;width:28px;height:150px;border-radius:0 0 16px 16px;background:linear-gradient(90deg,rgba(43,208,255,.25),rgba(88,224,255,.98),rgba(33,126,255,.25));box-shadow:0 0 28px rgba(37,190,255,.45);filter:blur(.15px)}.w1{left:13%;bottom:16%}.w2{right:18%;bottom:20%;height:132px}
+.hero-content{position:relative;z-index:5;width:min(940px,95vw);text-align:center}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;border:1px solid rgba(31,210,255,.28);background:rgba(3,18,38,.62);color:#cdefff;font-size:12px;font-weight:850;letter-spacing:.9px;box-shadow:0 0 28px rgba(31,210,255,.08)}
+.hero h1{font-family:'Bungee',sans-serif;font-size:clamp(52px,9vw,108px);line-height:.92;margin:20px 0 14px;font-weight:400;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(180deg,#ffffff 0%,#dff7ff 38%,#40d9ff 72%,#4c7dff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);filter:drop-shadow(0 6px 0 #061126) drop-shadow(0 0 24px rgba(31,210,255,.5))}.hero h1 span{color:var(--cyan)}
+.hero-sub{font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:600;letter-spacing:.5px;color:#b9cee1;max-width:700px;margin:0 auto 23px}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;text-decoration:none;font-weight:900;border:1px solid transparent;transition:transform .18s,box-shadow .18s,background .18s}.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:linear-gradient(135deg,#12cbff,#2a6eff);color:#fff;box-shadow:0 12px 30px rgba(31,138,255,.24)}.btn-secondary{background:rgba(6,17,34,.74);border-color:rgba(31,210,255,.45);color:#def8ff}
+.server-card{width:min(700px,94vw);margin:28px auto 0;display:grid;grid-template-columns:1.1fr 2fr 1fr;gap:12px;align-items:center;padding:15px 18px;border-radius:18px;background:rgba(2,14,29,.75);border:1px solid rgba(39,185,255,.35);box-shadow:0 20px 55px rgba(0,0,0,.34),0 0 36px rgba(31,190,255,.08);backdrop-filter:blur(10px)}
+.server-cell{padding:8px 12px;border-right:1px solid rgba(255,255,255,.09)}.server-cell:last-child{border-right:0}.online{color:var(--green);font-weight:900}.server-ip{font-size:15px;font-weight:900;letter-spacing:.2px}.server-meta{font-size:12px;color:#88a6bf;margin-top:3px}
+main,section{position:relative;z-index:2}
+.section{padding:105px 5vw;background:linear-gradient(180deg,#020712,#071022)}.section.alt{background:linear-gradient(180deg,#071022,#030814)}
+.section-wrap{width:min(1180px,92vw);margin:auto}.eyebrow{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--cyan);font-weight:900;text-align:center;margin-bottom:9px}.section-title{font-family:'Rajdhani',sans-serif;font-size:clamp(36px,5vw,54px);font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;line-height:1.05;margin-bottom:11px}.section-sub{color:var(--muted);text-align:center;max-width:720px;margin:0 auto 42px}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.feature{padding:28px 22px;border-radius:18px;background:linear-gradient(180deg,rgba(11,27,51,.84),rgba(5,13,28,.86));border:1px solid rgba(88,171,255,.16);box-shadow:0 14px 35px rgba(0,0,0,.22);transition:.22s;overflow:hidden;position:relative}.feature::before{content:"";position:absolute;inset:auto -20% -45% 10%;height:120px;background:radial-gradient(circle,rgba(30,196,255,.15),transparent 68%);pointer-events:none}.feature:hover{transform:translateY(-7px);border-color:rgba(68,207,255,.45);box-shadow:0 20px 50px rgba(0,0,0,.32),0 0 25px rgba(31,190,255,.08)}.feature-icon{font-size:36px;margin-bottom:12px}.feature h3{font-family:'Rajdhani',sans-serif;font-size:21px;font-weight:700;letter-spacing:.7px;margin-bottom:7px}.feature p{color:#9fb5cb;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;gap:14px}.stat{padding:20px;border-radius:16px;background:rgba(7,20,39,.72);border:1px solid rgba(96,159,220,.14);text-align:center}.stat b{font-size:29px;display:block;color:#eff8ff}.stat span{font-size:12px;color:#8ca6be}
+.discord-section{padding-top:82px}.discord-box{padding:40px;border-radius:24px;background:radial-gradient(circle at 20% 20%,rgba(93,89,255,.15),transparent 34%),linear-gradient(135deg,rgba(15,24,58,.92),rgba(4,12,29,.95));border:1px solid rgba(124,122,255,.24);box-shadow:0 20px 70px rgba(0,0,0,.28);text-align:center}.discord-box h2{font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:9px}.discord-box p{color:#a9bbd2;max-width:650px;margin:0 auto 23px}.social-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn-instagram{border:1px solid rgba(255,120,190,.5);background:linear-gradient(135deg,rgba(255,64,129,.18),rgba(125,70,255,.18));color:#fff;box-shadow:0 0 24px rgba(255,80,170,.10)}.btn-instagram:hover{border-color:rgba(255,120,190,.85);box-shadow:0 0 32px rgba(255,80,170,.18)}
+.join-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:980px;margin:0 auto}.join-card{position:relative;overflow:hidden;padding:30px;border-radius:22px;background:linear-gradient(145deg,rgba(10,27,52,.92),rgba(4,12,26,.94));border:1px solid rgba(87,198,255,.2);box-shadow:0 18px 48px rgba(0,0,0,.25);transition:.22s}.join-card:hover{transform:translateY(-6px);border-color:rgba(87,198,255,.48);box-shadow:0 22px 55px rgba(0,0,0,.34),0 0 26px rgba(31,210,255,.08)}.join-card::before{content:"";position:absolute;inset:-40% -10% auto;height:170px;background:radial-gradient(circle,rgba(31,210,255,.14),transparent 62%);pointer-events:none}.join-label{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(31,210,255,.08);border:1px solid rgba(31,210,255,.24);color:#9deaff;font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}.join-card h3{font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin:14px 0 8px}.join-desc{color:#93aac0;font-size:14px;margin-bottom:18px}.join-value{position:relative;z-index:1;padding:17px 18px;border-radius:14px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);font-family:'Rajdhani',sans-serif;font-size:25px;font-weight:700;color:#f4fbff;letter-spacing:.6px;word-break:break-word}.join-port{font-size:14px;color:#7f9bb2;margin-top:7px}.join-help{text-align:center;margin-top:20px;color:#7f9bb2;font-size:13px}.join-help strong{color:#dff8ff}
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.shop-card{border-radius:20px;overflow:hidden;background:#071225;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 42px rgba(0,0,0,.26);transition:.22s;position:relative}.shop-card:hover{transform:translateY(-8px)}.rank-art{height:175px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#08111f,#0d213e)}.rank-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.13),transparent 35%),linear-gradient(180deg,transparent,rgba(0,0,0,.35))}.rank-badge{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:1000;position:relative;z-index:2;border:2px solid rgba(255,255,255,.55);box-shadow:0 0 35px currentColor, inset 0 0 25px rgba(255,255,255,.12)}.rank-info{padding:21px 18px 24px;text-align:center}.rank-name{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.price{font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;letter-spacing:.5px;margin:4px 0 8px}.rank-tag{display:inline-block;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:#c9d8e7;font-size:11px;font-weight:900}
+.deadliest .rank-art{background:radial-gradient(circle at 50% 55%,rgba(36,228,138,.28),transparent 40%),linear-gradient(135deg,#05150f,#0a2c1f)}.deadliest .rank-badge{color:#21db82;border-color:#52efaa}.deadliest .price{color:#2de38e}
+.vip .rank-art{background:radial-gradient(circle at 50% 55%,rgba(49,128,255,.32),transparent 40%),linear-gradient(135deg,#06142c,#0a2855)}.vip .rank-badge{color:#5ea2ff;border-color:#87bcff}.vip .price{color:#4c99ff}
+.mvp .rank-art{background:radial-gradient(circle at 50% 55%,rgba(177,108,255,.29),transparent 40%),linear-gradient(135deg,#17102e,#281354)}.mvp .rank-badge{color:#be8cff;border-color:#d8bdff}.mvp .price{color:#bf8aff}
+.lunge .rank-art{background:radial-gradient(circle at 50% 55%,rgba(255,56,68,.30),transparent 40%),linear-gradient(135deg,#2a080c,#4a1018)}.lunge .rank-badge{color:#ff6068;border-color:#ff9da2}.lunge .price{color:#ff5c64}
+.rank-note{margin-top:28px;padding:24px;border-radius:18px;border:1px solid rgba(31,210,255,.18);background:rgba(7,19,37,.72);text-align:center}.rank-note strong{font-size:20px;display:block;margin-bottom:5px}.rank-note p{color:#9cb3c9;margin-bottom:15px}
+.rules-grid,.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px;max-width:1000px;margin:auto}.rule,.faq{padding:24px;border-radius:17px;background:rgba(8,19,36,.82);border:1px solid rgba(90,163,220,.13)}.rule strong{color:var(--cyan);letter-spacing:.3px}.rule p,.faq p{color:#9bb0c5;margin-top:5px}.faq h3{font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;letter-spacing:.4px}
+.footer{padding:30px 5vw 42px;text-align:center;color:#7f95aa;border-top:1px solid rgba(255,255,255,.06);background:#02050d}.footer .server-ip{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:9px;background:rgba(255,255,255,.04);color:#dcefff}
+@media(max-width:980px){.nav ul{gap:15px}.feature-grid,.shop-grid{grid-template-columns:repeat(2,1fr)}}
+
+.player-only{display:flex;justify-content:center;width:min(360px,90vw);padding:12px 18px;margin-top:22px}.player-only .server-cell{border-right:0;text-align:center;padding:6px 12px;width:100%}.player-count-line{font-size:16px;font-weight:900;color:#dff6ff;letter-spacing:.2px}.player-count-line #player-count{font-size:20px;color:#22d3ee;text-shadow:0 0 14px rgba(34,211,238,.45)}
+@media(max-width:760px){.nav{height:68px}.nav-social{display:none}.nav-inner{width:94vw}.nav ul{display:none}.hero{padding-top:90px}.hero h1{letter-spacing:-2px}.server-card{grid-template-columns:1fr;gap:0;padding:11px 14px}.server-cell{border-right:0;border-bottom:1px solid rgba(255,255,255,.08);padding:10px}.server-cell:last-child{border-bottom:0}.feature-grid,.shop-grid,.rules-grid,.faq-grid,.stats{grid-template-columns:1fr}.section{padding:82px 5vw}.discord-box{padding:30px 20px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a class="logo" href="#home">LUNGE <span>MC</span></a>
+  <ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#modes">Game Modes</a></li><li><a href="#join">How to Join</a></li><li><a href="#shop">Shop</a></li><li><a href="#events">Events</a></li><li><a href="#rules">Rules</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <div class="nav-social"><a class="nav-discord" href="https://discord.gg/6Utp7wnxdD" target="_blank" rel="noopener">💬 Discord</a><a class="nav-discord" href="https://www.instagram.com/lungemc_mc_555?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">📸 Instagram</a></div>
+</div></nav>
+<main>
+<section class="hero" id="home">
+  <div class="stars"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <div class="island i1"></div><div class="island i2"></div><div class="island i3"></div><div class="island i4"></div><div class="waterfall w1"></div><div class="waterfall w2"></div>
+  <div class="hero-content">
+    <div class="hero-pill">⛏️ MINECRAFT SURVIVAL SERVER</div>
+    <h1>LUNGE <span>MC</span></h1>
+    <p class="hero-sub">BUILD • SURVIVE • FIGHT • DOMINATE<br>Join Lunge MC — where legends are built.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="https://discord.gg/6Utp7wnxdD" target="_blank" rel="noopener">💬 Join Discord</a><a class="btn btn-secondary" href="#about">Explore Server →</a></div>
+    <div class="server-card player-only"><div class="server-cell player-count-cell"><div class="player-count-line">👥 <span id="player-count">—</span> Players Online</div></div></div>
+  </div>
+</section>
+
+<section class="section" id="join"><div class="section-wrap">
+  <div class="eyebrow">CONNECT TO THE SERVER</div><h2 class="section-title">How To Join Lunge MC</h2><p class="section-sub">Choose your edition and use the details below to connect.</p>
+  <div class="join-grid">
+    <div class="join-card"><span class="join-label">JAVA EDITION</span><h3>💻 Java Players</h3><p class="join-desc">Minecraft Java Edition players should use this server address:</p><div class="join-value">play.lungemc.fun:20005</div><p class="join-port">Server address + port</p></div>
+    <div class="join-card"><span class="join-label">BEDROCK EDITION</span><h3>📱 Bedrock Players</h3><p class="join-desc">Minecraft Bedrock Edition players should enter:</p><div class="join-value">play.lungemc.fun</div><p class="join-port">Port: <strong>20005</strong></p></div>
+  </div>
+  <p class="join-help">Need help joining? <strong>Join our Discord</strong> and ask the Lunge MC staff.</p>
+</div></section>
+
+<section class="section alt" id="about"><div class="section-wrap">
+  <div class="eyebrow">WELCOME TO LUNGE MC</div><h2 class="section-title">Your Next Minecraft Adventure Starts Here.</h2><p class="section-sub">A community-focused server built for survival, PvP, events, progression and having a great time with friends.</p>
+  <div class="feature-grid">
+    <div class="feature"><div class="feature-icon">🌍</div><h3>Survival</h3><p>Build bases, create farms, explore and grow your world with the community.</p></div>
+    <div class="feature"><div class="feature-icon">⚔️</div><h3>PvP</h3><p>Fight players, sharpen your skills and prove who really dominates.</p></div>
+    <div class="feature"><div class="feature-icon">🎮</div><h3>Game Modes</h3><p>Enjoy different ways to play with more features and events coming soon.</p></div>
+    <div class="feature"><div class="feature-icon">🎁</div><h3>Events & Giveaways</h3><p>Take part in community events, rewards, giveaways and special server moments.</p></div>
+  </div>
+  <div class="stats"><div class="stat"><b>24/7</b><span>Server Experience</span></div><div class="stat"><b>⚔ PvP</b><span>Competitive Gameplay</span></div><div class="stat"><b>🎁 Events</b><span>Community Rewards</span></div><div class="stat"><b>💬 Discord</b><span>Player Support</span></div></div>
+</div></section>
+
+<section class="section" id="modes"><div class="section-wrap"><div class="eyebrow">PLAY YOUR WAY</div><h2 class="section-title">Game Modes</h2><p class="section-sub">Pick your style and jump into the Lunge MC experience.</p>
+<div class="feature-grid"><div class="feature"><div class="feature-icon">🏠</div><h3>Survival</h3><p>Classic survival progression with building, farms and exploration.</p></div><div class="feature"><div class="feature-icon">🗡️</div><h3>KitPvP</h3><p>Choose a kit, enter the arena and battle other players.</p></div><div class="feature"><div class="feature-icon">🧩</div><h3>UGC</h3><p>Community-focused content and new ideas added over time.</p></div><div class="feature"><div class="feature-icon">🏆</div><h3>Events</h3><p>Special challenges and giveaways announced through Discord.</p></div></div>
+</div></section>
+
+<section class="section discord-section alt" id="discord"><div class="section-wrap"><div class="discord-box"><div class="eyebrow">JOIN THE COMMUNITY</div><h2>Ready to join Lunge MC?</h2><p>Get updates, support, events, giveaways and connect with the Lunge MC community on Discord.</p><div class="social-actions"><a class="btn btn-primary" href="https://discord.gg/6Utp7wnxdD" target="_blank" rel="noopener">💬 Join Discord →</a><a class="btn btn-instagram" href="https://www.instagram.com/lungemc_mc_555?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">📸 Follow Instagram →</a></div></div></div></section>
+
+<section class="section" id="shop"><div class="section-wrap"><div class="eyebrow">SERVER SHOP</div><h2 class="section-title">Choose Your Rank</h2><p class="section-sub">Optional ranks to support Lunge MC and unlock extra perks.</p>
+<div class="shop-grid">
+  <div class="shop-card deadliest"><div class="rank-art"><div class="rank-badge">⚔</div></div><div class="rank-info"><div class="rank-name">Deadliest</div><div class="price">₹50</div><span class="rank-tag">GREEN • COMBAT</span></div></div>
+  <div class="shop-card vip"><div class="rank-art"><div class="rank-badge">★</div></div><div class="rank-info"><div class="rank-name">VIP</div><div class="price">₹70</div><span class="rank-tag">BLUE • PREMIUM</span></div></div>
+  <div class="shop-card mvp"><div class="rank-art"><div class="rank-badge">◆</div></div><div class="rank-info"><div class="rank-name">MVP</div><div class="price">₹100</div><span class="rank-tag">PURPLE • ELITE</span></div></div>
+  <div class="shop-card lunge"><div class="rank-art"><div class="rank-badge">♛</div></div><div class="rank-info"><div class="rank-name">Lunge</div><div class="price">₹200</div><span class="rank-tag">RED • TOP RANK</span></div></div>
+</div>
+<div class="rank-note"><strong>💬 Want a rank added to your account?</strong><p>After your purchase, contact an Admin or the Server Owner on our Discord so your rank can be added to your account.</p><a class="btn btn-primary" href="https://discord.gg/6Utp7wnxdD" target="_blank" rel="noopener">Contact Us on Discord →</a></div>
+</div></section>
+
+<section class="section alt" id="events"><div class="section-wrap"><div class="eyebrow">STAY TUNED</div><h2 class="section-title">Events & Giveaways</h2><p class="section-sub">Community events, rewards and special announcements are shared through Discord. Join in and don't miss the next one.</p><div class="discord-box"><h2>Something big could be next 👀</h2><p>Watch Discord for announcements, giveaways and special server events.</p><a class="btn btn-secondary" href="https://discord.gg/6Utp7wnxdD" target="_blank" rel="noopener">Open Discord</a></div></div></section>
+
+<section class="section" id="rules"><div class="section-wrap"><div class="eyebrow">PLAY FAIR</div><h2 class="section-title">Server Rules</h2><p class="section-sub">Keep Lunge MC fun, fair and welcoming for everyone.</p><div class="rules-grid"><div class="rule"><strong>01 — Respect</strong><p>Respect players and staff. No harassment or hate.</p></div><div class="rule"><strong>02 — No Cheating</strong><p>No hacked clients, unfair exploits or unauthorized advantages.</p></div><div class="rule"><strong>03 — No Griefing</strong><p>Do not destroy or steal from other players without permission.</p></div><div class="rule"><strong>04 — Have Fun</strong><p>Play fair, follow staff instructions and enjoy the server.</p></div></div></div></section>
+
+<section class="section alt" id="faq"><div class="section-wrap"><div class="eyebrow">NEED TO KNOW</div><h2 class="section-title">FAQ</h2><p class="section-sub">Quick answers before you join Lunge MC.</p><div class="faq-grid"><div class="faq"><h3>🎮 What is the server IP?</h3><p>Use <strong>play.lungemc.fun:20005</strong> to connect.</p></div><div class="faq"><h3>💬 Where can I get support?</h3><p>Join our Discord and contact the staff for help.</p></div><div class="faq"><h3>🎁 Where are giveaways announced?</h3><p>Giveaways and events are announced through the Lunge MC Discord community.</p></div><div class="faq"><h3>🛒 Are ranks required?</h3><p>No. Ranks are optional and the server can be enjoyed without purchasing one.</p></div></div></div></section>
+</main>
+<footer class="footer"><strong>Lunge MC</strong> — Minecraft server community<br><span class="server-ip">IP: play.lungemc.fun:20005</span><p style="margin-top:12px">© 2026 Lunge MC. Not affiliated with Mojang Studios or Microsoft.</p></footer>
+
+<script>
+async function updatePlayerCount(){
+  const el=document.getElementById('player-count');
+  if(!el) return;
+  try{
+    const res=await fetch('https://api.mcsrvstat.us/3/play.lungemc.fun:20005',{cache:'no-store'});
+    if(!res.ok) throw new Error('status');
+    const data=await res.json();
+    el.textContent=(data.players && typeof data.players.online==='number') ? data.players.online : 0;
+  }catch(e){
+    el.textContent='0';
+  }
+}
+updatePlayerCount();
+setInterval(updatePlayerCount,30000);
+</script>
+</body></html>
